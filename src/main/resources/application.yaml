@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Sport_Event_Calendar
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sports_event_calendar_db
+    username: sports_event_calendar
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  sql:
+    init:
+      schema-locations: classpath:data/Sport_event_calendar_schema.sql
+      data-locations: classpath:data/Sport_event_calendar_data.sql
+      mode: never
