@@ -1,15 +1,12 @@
 package com.example.sports_event_calendar.Models.DTOs;
 
-import java.time.LocalDateTime;
 
 public class EventDTO {
     private Long id;
-    private String dayOfWeek;
-    private LocalDateTime eventDate;
+    private String eventName;
     private String sportType;
     private String firstTeamName;
     private String secondTeamName;
-    private String venueName;
 
     public Long getId() {
         return id;
@@ -19,20 +16,12 @@ public class EventDTO {
         this.id = id;
     }
 
-    public String getDayOfWeek() {
-        return dayOfWeek;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public LocalDateTime getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(LocalDateTime eventDate) {
-        this.eventDate = eventDate;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public String getSportType() {
@@ -57,13 +46,5 @@ public class EventDTO {
 
     public void setSecondTeamName(String secondTeamName) {
         this.secondTeamName = secondTeamName;
-    }
-
-    public String getVenueName() {
-        return venueName;
-    }
-
-    public void setVenueName(String venue_name) {
-        this.venueName = venue_name;
     }
 }
