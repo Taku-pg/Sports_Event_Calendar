@@ -56,4 +56,11 @@ public class Venue {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+    public String getStreetName() {
+        return street.getStreetName();
+    }
+
+
+
 }

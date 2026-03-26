@@ -59,4 +59,11 @@ public class Team {
     public void setEventsJoinAsSecondTeam(List<Event> eventsJoinAsSecondTeam) {
         this.eventsJoinAsSecondTeam = eventsJoinAsSecondTeam;
     }
+
+    /**
+     * get sport type name
+     * */
+    public String getSportTypeName() {
+        return sportType.getSportType();
+    }
 }
