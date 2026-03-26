@@ -76,11 +76,11 @@ INSERT INTO event (event_date, _first_team_id, _second_team_id, _venue_id)
     SELECT e.event_date, t1.id, t2.id, v.id
     FROM(
         VALUES
-            ('2026-07-12'::date, 'Giants', 'Fighters', 'PGE Narodowy'),
-            ('2026-07-18'::date,'Kagome','Kojima','Tokyo dome'),
-            ('2026-08-02'::date,'Jakobs','Buffalo','Olympia Stadium'),
-            ('2026-08-10'::date,'Flag Star','Blossom','National Stadium'),
-            ('2026-09-10'::date,'Suntory','All Blacks','Hungover Stadium')
+            ('2026-07-12 18:30:00'::timestamp, 'Giants', 'Fighters', 'PGE Narodowy'),
+            ('2026-07-18 15:00:00'::timestamp,'Kagome','Kojima','Tokyo dome'),
+            ('2026-08-02 17:00:00'::timestamp,'Jakobs','Buffalo','Olympia Stadium'),
+            ('2026-08-10 18:30:00'::timestamp,'Flag Star','Blossom','National Stadium'),
+            ('2026-09-10 12:30:00'::timestamp,'Suntory','All Blacks','Hungover Stadium')
         ) AS e(event_date, first_team, second_team, venue_name)
         JOIN Team t1
             ON t1.team_name = e.first_team

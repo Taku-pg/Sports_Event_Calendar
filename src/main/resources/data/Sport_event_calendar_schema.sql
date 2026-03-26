@@ -14,7 +14,7 @@ ALTER TABLE Street
 DROP CONSTRAINT Street_City;
 
 ALTER TABLE Team
-DROP CONSTRAINT Team_SportType;
+DROP CONSTRAINT Team_Sport_Type;
 
 ALTER TABLE Venue
 DROP CONSTRAINT Venue_Street;
@@ -26,7 +26,7 @@ DROP TABLE Country;
 
 DROP TABLE Event;
 
-DROP TABLE SportType;
+DROP TABLE Sport_Type;
 
 DROP TABLE Street;
 
@@ -55,7 +55,7 @@ CREATE TABLE country (
 -- Table: Event
 CREATE TABLE event (
     id int  NOT NULL GENERATED ALWAYS AS IDENTITY,
-    event_date date  NOT NULL,
+    event_date timestamp  NOT NULL,
     _first_team_id int  NOT NULL,
     _second_team_id int  NOT NULL,
     _venue_id int  NOT NULL,
