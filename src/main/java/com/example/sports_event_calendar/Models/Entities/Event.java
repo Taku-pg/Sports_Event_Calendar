@@ -82,4 +82,33 @@ public class Event {
         DayOfWeek dow = DayOfWeek.from(eventDate);
         return dow.getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
     }
+
+
+    /**
+     * get name of first team
+     * */
+    public String getFirstTeamName(){
+        return firstTeam.getTeamName();
+    }
+
+    /**
+     * get name of second team
+     * */
+    public String getSecondTeamName(){
+        return secondTeam.getTeamName();
+    }
+
+    /**
+     * get name of sport type
+     * */
+    public String getSportType(){
+        return firstTeam.getSportTypeName();
+    }
+
+    /**
+     * get name of venue name
+     * */
+    public String getVenueName(){
+        return venue.getVenueName();
+    }
 }
