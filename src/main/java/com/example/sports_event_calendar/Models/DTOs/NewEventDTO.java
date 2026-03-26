@@ -1,21 +1,18 @@
 package com.example.sports_event_calendar.Models.DTOs;
 
-import com.example.sports_event_calendar.Validators.ValidSportType;
-import com.example.sports_event_calendar.Validators.ValidSportTypeAndTeam;
-import com.example.sports_event_calendar.Validators.ValidTeam;
-import com.example.sports_event_calendar.Validators.ValidVenue;
+import com.example.sports_event_calendar.Validators.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @ValidSportTypeAndTeam
 public class NewEventDTO {
     @NotBlank
     @Size(min = 1, max = 50)
     private String eventName;
-    @NotBlank
-    private LocalDate eventDate;
+    @ValidEventDate
+    private LocalDateTime eventDate;
     @NotBlank
     @ValidSportType
     private String sportType;
@@ -37,11 +34,11 @@ public class NewEventDTO {
         this.eventName = eventName;
     }
 
-    public LocalDate getEventDate() {
+    public LocalDateTime getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(LocalDate eventDate) {
+    public void setEventDate(LocalDateTime eventDate) {
         this.eventDate = eventDate;
     }
 
