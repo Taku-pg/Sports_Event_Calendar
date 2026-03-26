@@ -65,4 +65,12 @@ public class Event {
     public void setVenue(Venue venue) {
         this.venue = venue;
     }
+
+    /**
+     * calculate day of week
+     * */
+    public String getDayOfWeek(){
+        DayOfWeek dow = DayOfWeek.from(eventDate);
+        return dow.getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+    }
 }
