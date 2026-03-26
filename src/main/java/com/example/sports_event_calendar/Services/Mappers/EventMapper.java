@@ -11,12 +11,10 @@ public class EventMapper {
     public EventDTO mapToDTO(Event event){
         EventDTO eventDTO = new EventDTO();
         eventDTO.setId(event.getId());
-        eventDTO.setDayOfWeek(event.getDayOfWeek());
-        eventDTO.setEventDate(event.getEventDate());
-        eventDTO.setFirstTeamName(event.getFirstTeam().getTeamName());
-        eventDTO.setSecondTeamName(event.getSecondTeam().getTeamName());
-        eventDTO.setSportType(event.getFirstTeam().getSportType().getSportType());
-        eventDTO.setVenueName(event.getVenue().getVenueName());
+        eventDTO.setEventName(event.getEventName());
+        eventDTO.setFirstTeamName(event.getFirstTeamName());
+        eventDTO.setSecondTeamName(event.getSecondTeamName());
+        eventDTO.setSportType(event.getSportType());
 
         return eventDTO;
     }
