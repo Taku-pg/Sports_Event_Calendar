@@ -30,6 +30,10 @@ public class SportTypeAndTeamConsistentValidator implements ConstraintValidator<
             return false;
         }
 
+        if(firstTeam.get().getTeamName().equals(secondTeam.get().getTeamName())) {
+            return false;
+        }
+
         final String firstTeamSportType = firstTeam.get().getSportTypeName();
         final String secondTeamSportType = secondTeam.get().getSportTypeName();
 
@@ -37,6 +41,6 @@ public class SportTypeAndTeamConsistentValidator implements ConstraintValidator<
                 !firstTeamSportType.equals(newEventDTO.getSportType())) {
             return false;
         }
-        return false;
+        return true;
     }
 }
