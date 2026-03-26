@@ -72,16 +72,16 @@ INSERT INTO venue (venue_name, building_number, _street_id)
             ON s.street_name = v.street_name;
 
 
-INSERT INTO event (event_date, _first_team_id, _second_team_id, _venue_id)
-    SELECT e.event_date, t1.id, t2.id, v.id
+INSERT INTO event (event_name, event_date, _first_team_id, _second_team_id, _venue_id)
+    SELECT e.event_name, e.event_date, t1.id, t2.id, v.id
     FROM(
         VALUES
-            ('2026-07-12 18:30:00'::timestamp, 'Giants', 'Fighters', 'PGE Narodowy'),
-            ('2026-07-18 15:00:00'::timestamp,'Kagome','Kojima','Tokyo dome'),
-            ('2026-08-02 17:00:00'::timestamp,'Jakobs','Buffalo','Olympia Stadium'),
-            ('2026-08-10 18:30:00'::timestamp,'Flag Star','Blossom','National Stadium'),
-            ('2026-09-10 12:30:00'::timestamp,'Suntory','All Blacks','Hungover Stadium')
-        ) AS e(event_date, first_team, second_team, venue_name)
+            ('Baseball championship','2026-07-12 18:30:00'::timestamp, 'Giants', 'Fighters', 'PGE Narodowy'),
+            ('National football league','2026-07-18 15:00:00'::timestamp,'Kagome','Kojima','Tokyo dome'),
+            ('Berlin basketball tournament','2026-08-02 17:00:00'::timestamp,'Jakobs','Buffalo','Olympia Stadium'),
+            ('World volleyball tour','2026-08-10 18:30:00'::timestamp,'Flag Star','Blossom','National Stadium'),
+            ('WRT','2026-09-10 12:30:00'::timestamp,'Suntory','All Blacks','Hungover Stadium')
+        ) AS e(event_name,event_date, first_team, second_team, venue_name)
         JOIN Team t1
             ON t1.team_name = e.first_team
         JOIN Team t2

@@ -55,6 +55,7 @@ CREATE TABLE country (
 -- Table: Event
 CREATE TABLE event (
     id int  NOT NULL GENERATED ALWAYS AS IDENTITY,
+    event_name varchar(50)  NOT NULL,
     event_date timestamp  NOT NULL,
     _first_team_id int  NOT NULL,
     _second_team_id int  NOT NULL,
