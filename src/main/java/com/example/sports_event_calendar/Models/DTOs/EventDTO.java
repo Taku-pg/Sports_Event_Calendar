@@ -8,6 +8,18 @@ public class EventDTO {
     private String firstTeamName;
     private String secondTeamName;
 
+    public EventDTO(Long id,
+                    String eventName,
+                    String sportType,
+                    String firstTeamName,
+                    String secondTeamName) {
+        this.id = id;
+        this.eventName = eventName;
+        this.sportType = sportType;
+        this.firstTeamName = firstTeamName;
+        this.secondTeamName = secondTeamName;
+    }
+
     public Long getId() {
         return id;
     }
