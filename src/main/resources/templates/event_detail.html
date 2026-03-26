@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>All events</title>
+</head>
+<body>
+<div class="eventsDetail">
+    <span th:text="${eventDetailDTO.dayOfWeek}"></span>
+    <span th:text="${eventDetailDTO.eventDate}"></span>
+    <span th:text="${eventDetailDTO.sportType}"></span>
+    <span th:text="${eventDetailDTO.firstTeamName}"></span>
+    <span th:text="${eventDetailDTO.secondTeamName}"></span>
+    <span th:text="${eventDetailDTO.address.countryName}"></span>
+    <span th:text="${eventDetailDTO.address.cityName}"></span>
+    <span th:text="${eventDetailDTO.address.streetName}"></span>
+    <span th:text="${eventDetailDTO.address.buildingNumber}"></span>
+    <span th:text="${eventDetailDTO.address.venueName}"></span>
+</div>
+
+</body>
+</html>
