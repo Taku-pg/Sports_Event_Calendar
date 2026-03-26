@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface VenueRepository extends JpaRepository<Venue,Long> {
 
     @Query("""
@@ -23,4 +25,6 @@ public interface VenueRepository extends JpaRepository<Venue,Long> {
                 WHERE v.id = :venueId
     """)
     public AddressDTO getAddress(@Param("venueId")  Long venueId);
+
+    Optional<Venue> findVenueByVenueName(String venueName);
 }
