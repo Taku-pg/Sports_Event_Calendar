@@ -7,22 +7,18 @@
     <div class="eventsList">
         <table class="eventTable">
             <tr>
-                <th>Day of week</th>
-                <th>Date</th>
+                <th>Event Name</th>
+                <th>Sport type</th>
                 <th>Team 1</th>
                 <th>Team 2</th>
-                <th>Type of sport</th>
-                <th>Venue</th>
                 <th>Detail</th>
             </tr>
             <tbody>
             <tr th:each="event:${events}">
-                <td th:text="${event.dayOfWeek}"></td>
-                <td th:text="${event.eventDate}"></td>
+                <td th:text="${event.eventName}"></td>
+                <td th:text="${event.sportType}"></td>
                 <td th:text="${event.firstTeamName}"></td>
                 <td th:text="${event.secondTeamName}"></td>
-                <td th:text="${event.sportType}"></td>
-                <td th:text="${event.venueName}"></td>
                 <td><a th:href="@{/events(eventId = ${event.id})}">Detail</a></td>
             </tr>
         </table>
