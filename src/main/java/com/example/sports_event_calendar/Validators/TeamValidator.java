@@ -7,7 +7,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Optional;
 
-public class TeamValidator implements ConstraintValidator<ValidTeam, String> {
+public class TeamValidator implements ConstraintValidator<ValidTeam, Long> {
 
     private final TeamRepository teamRepository;
 
@@ -21,8 +21,8 @@ public class TeamValidator implements ConstraintValidator<ValidTeam, String> {
     }
 
     @Override
-    public boolean isValid(String teamName, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<Team> team = teamRepository.findTeamByTeamName(teamName);
+    public boolean isValid(Long teamId, ConstraintValidatorContext constraintValidatorContext) {
+        Optional<Team> team = teamRepository.findTeamById(teamId);
         return team.isPresent();
     }
 

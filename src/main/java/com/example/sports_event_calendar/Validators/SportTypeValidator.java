@@ -8,7 +8,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Optional;
 
-public class SportTypeValidator implements ConstraintValidator<ValidSportType, String> {
+public class SportTypeValidator implements ConstraintValidator<ValidSportType, Long> {
 
     private final SportTypeRepository sportTypeRepository;
 
@@ -22,8 +22,8 @@ public class SportTypeValidator implements ConstraintValidator<ValidSportType, S
     }
 
     @Override
-    public boolean isValid(String sportTypeName, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<SportType> sportType = sportTypeRepository.findSportTypeBySportType(sportTypeName);
+    public boolean isValid(Long sportTypeId, ConstraintValidatorContext constraintValidatorContext) {
+        Optional<SportType> sportType = sportTypeRepository.findSportTypeById(sportTypeId);
         return sportType.isPresent();
     }
 }

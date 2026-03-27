@@ -7,7 +7,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Optional;
 
-public class VenueValidator implements ConstraintValidator<ValidVenue, String> {
+public class VenueValidator implements ConstraintValidator<ValidVenue, Long> {
     private final VenueRepository venueRepository;
     public VenueValidator(VenueRepository venueRepository) {
         this.venueRepository = venueRepository;
@@ -18,8 +18,8 @@ public class VenueValidator implements ConstraintValidator<ValidVenue, String> {
     }
 
     @Override
-    public boolean isValid(String venueName, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<Venue> venue = venueRepository.findVenueByVenueName(venueName);
+    public boolean isValid(Long venueId, ConstraintValidatorContext constraintValidatorContext) {
+        Optional<Venue> venue = venueRepository.findVenueById(venueId);
         return venue.isPresent();
     }
 
