@@ -2,6 +2,7 @@ package com.example.sports_event_calendar.Services;
 
 import com.example.sports_event_calendar.Models.DTOs.TeamDTO;
 import com.example.sports_event_calendar.Models.Entities.SportType;
+import com.example.sports_event_calendar.Models.Entities.Team;
 import com.example.sports_event_calendar.Repositories.TeamRepository;
 import com.example.sports_event_calendar.Services.Mappers.TeamMapper;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,9 @@ public class TeamService {
                 .stream()
                 .map(teamMapper::toTeamDTO)
                 .toList();
+    }
+
+    public Team findTeamById(Long id){
+        return teamRepository.findTeamById(id).orElse(null);
     }
 }

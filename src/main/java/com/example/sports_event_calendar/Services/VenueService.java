@@ -16,4 +16,8 @@ public class VenueService {
     public List<Venue> getAllVenues() {
         return venueRepository.findAll();
     }
+
+    public Venue findVenueById(long id) {
+        return venueRepository.findById(id).orElse(null);
+    }
 }
