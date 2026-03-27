@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add event page</title>
+</head>
+<body>
+<form id="add-event-form" th:action="@{/add-event}" method="post" th:object="${newEvent}">
+
+    <label for="event-name">Event Name:</label>
+    <input id="event-name" type="text" required th:field="*{eventName}" />
+    <span th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}" class="error"></span>
+
+    <label for="sport-type">Sport type:</label>
+    <select id="sport-type" required th:field="*{sportTypeId}">
+        <option value="">select</option>
+        <option th:each="sportType:${allSportTypes}"
+                th:text="${sportType.sportTypeName}"
+                th:value="${sportType.id}"></option>
+    </select>
+    <span id="error-sport-type" th:if="${#fields.hasErrors('sportTypeId')}" th:errors="*{sportTypeId}" class="error"></span>
+
+    <div id="team-input" style="display: none">
+        <label for="first-team">Team 1:</label>
+        <select id="first-team" required th:field="*{firstTeamId}">
+            <option value="" disabled selected> select </option>
+        </select>
+        <span id="error-first-team" th:if="${#fields.hasErrors('firstTeamId')}" th:errors="*{firstTeamId}" class="error"></span>
+
+        <label for="second-team">Team 2:</label>
+        <select id="second-team" required th:field="*{secondTeamId}">
+            <option value="" disabled selected> select </option>
+        </select>
+        <span id="error-second-team" th:if="${#fields.hasErrors('secondTeamId')}" th:errors="*{secondTeamId}" class="error"></span>
+
+    </div>
+    <label for="venue">Venue: </label>
+    <select id="venue" required th:field="*{venueId}">
+        <option value="">select</option>
+        <option th:each="venue:${allVenues}"
+                th:text="${venue.venueName}"
+                th:value="${venue.id}"></option>
+    </select>
+    <span id="error-venue" th:if="${#fields.hasErrors('venueId')}" th:errors="*{venueId}" class="error"></span>
+
+
+    <label for="event-date">Event date:</label>
+    <input type="datetime-local" id="event-date" required
+           th:min="${#temporals.format(minDate, 'yyyy-MM-dd hh:mm')}"
+            th:field="*{eventDate}">
+    <span th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}" class="error"></span>
+
+
+    <button type="submit">create</button>
+
+</form>
+
+<script th:inline="javascript">
+    const sportTypeInput = document.getElementById('sport-type');
+    const teamInput = document.getElementById('team-input');
+    const firstTeamInput = document.getElementById('first-team');
+    const secondTeamInput = document.getElementById('second-team');
+    const allSportType = [[${allSportTypes}]];
+    let allTeam ;
+
+    sportTypeInput.addEventListener('change',(event) => {
+        if(sportTypeInput.value){
+            teamInput.style.display = 'block';
+            removeElement(firstTeamInput);
+            removeElement(secondTeamInput);
+
+            getTeam(Number(sportTypeInput.value));
+
+            firstTeamInput.addEventListener('change', ()=>{
+                if(!secondTeamInput.value ||
+                    secondTeamInput.value === firstTeamInput.value){
+                    const selectedValue = firstTeamInput.value;
+                    changeOption(secondTeamInput, Number(selectedValue));
+                }
+            });
+
+            secondTeamInput.addEventListener('change', ()=>{
+                if(!firstTeamInput.value ||
+                    firstTeamInput.value === secondTeamInput.value){
+                    const selectedValue = secondTeamInput.value;
+                    changeOption(firstTeamInput, Number(selectedValue));
+                }
+            })
+        }else{
+            teamInput.style.display = 'none';
+        }
+    })
+
+    /**
+     * set team to team selection field
+     * @param sportType name of sport type
+     * */
+    function getTeam(sportType){
+        const selectedSportType = allSportType.find(s => s.id === sportType);
+        allTeam = selectedSportType.allTeams;
+
+        for(const team of allTeam){
+            const firstOption = document.createElement('OPTION');
+            firstOption.setAttribute('value', team.id);
+            const secondOption = document.createElement('OPTION');
+            secondOption.setAttribute('value', team.id);
+
+            firstOption.text = team.teamName;
+            secondOption.text = team.teamName;
+
+            firstTeamInput.appendChild(firstOption);
+            secondTeamInput.appendChild(secondOption);
+        }
+        firstTeamInput.options.selectedIndex = 0;
+        secondTeamInput.options.selectedIndex = 0;
+
+    }
+
+    /**
+     * change another team selection field so that prevent selection of same team
+     * @param anotherElement another select field which is not selected yet
+     * @param selectedValue value selected which has been already selected
+     * */
+    function changeOption(anotherElement, selectedValue){
+        removeElement(anotherElement);
+        for(const team of allTeam){
+            if(team.id !== selectedValue){
+                const option = document.createElement('OPTION');
+                option.setAttribute('value', team.id);
+                option.text = team.teamName;
+                anotherElement.appendChild(option);
+            }
+            anotherElement.options.selectedIndex = 0;
+        }
+    }
+
+    /**
+     * remove options of select field
+     * */
+    function removeElement(selectElement){
+        for(let i=selectElement.length-1; 0<i ;i--){
+            selectElement.remove(i);
+        }
+    }
+
+</script>
+</body>
+</html>
