@@ -13,18 +13,14 @@ public class NewEventDTO {
     private String eventName;
     @ValidEventDate
     private LocalDateTime eventDate;
-    @NotBlank
     @ValidSportType
-    private String sportType;
-    @NotBlank
+    private Long sportTypeId;
     @ValidTeam
-    private String firstTeamName;
-    @NotBlank
+    private Long firstTeamId;
     @ValidTeam
-    private String secondTeamName;
-    @NotBlank
+    private Long secondTeamId;
     @ValidVenue
-    private String venueName;
+    private Long venueId;
 
     public String getEventName() {
         return eventName;
@@ -42,35 +38,35 @@ public class NewEventDTO {
         this.eventDate = eventDate;
     }
 
-    public String getSportType() {
-        return sportType;
+    public Long getSportTypeId() {
+        return sportTypeId;
     }
 
-    public void setSportType(String sportType) {
-        this.sportType = sportType;
+    public void setSportTypeId(Long sportTypeId) {
+        this.sportTypeId = sportTypeId;
     }
 
-    public String getFirstTeamName() {
-        return firstTeamName;
+    public Long getFirstTeamId() {
+        return firstTeamId;
     }
 
-    public void setFirstTeamName(String firstTeamName) {
-        this.firstTeamName = firstTeamName;
+    public void setFirstTeamId(Long firstTeamId) {
+        this.firstTeamId = firstTeamId;
     }
 
-    public String getSecondTeamName() {
-        return secondTeamName;
+    public Long getSecondTeamId() {
+        return secondTeamId;
     }
 
-    public void setSecondTeamName(String secondTeamName) {
-        this.secondTeamName = secondTeamName;
+    public void setSecondTeamId(Long secondTeamId) {
+        this.secondTeamId = secondTeamId;
     }
 
-    public String getVenueName() {
-        return venueName;
+    public Long getVenueId() {
+        return venueId;
     }
 
-    public void setVenueName(String venueName) {
-        this.venueName = venueName;
+    public void setVenueId(Long venueId) {
+        this.venueId = venueId;
     }
 }
