@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface SportTypeRepository extends JpaRepository<SportType, Long> {
     Optional<SportType> findSportTypeBySportType(String sportType);
+
+    Optional<SportType> findSportTypeById(Long id);
 }

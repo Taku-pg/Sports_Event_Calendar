@@ -27,4 +27,6 @@ public interface VenueRepository extends JpaRepository<Venue,Long> {
     public AddressDTO getAddress(@Param("venueId")  Long venueId);
 
     Optional<Venue> findVenueByVenueName(String venueName);
+
+    Optional<Venue> findVenueById(Long id);
 }
