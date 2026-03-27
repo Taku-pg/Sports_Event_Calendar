@@ -1,19 +1,27 @@
 package com.example.sports_event_calendar.Services;
 
+import com.example.sports_event_calendar.Models.DTOs.TeamDTO;
+import com.example.sports_event_calendar.Models.Entities.SportType;
 import com.example.sports_event_calendar.Repositories.TeamRepository;
+import com.example.sports_event_calendar.Services.Mappers.TeamMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class TeamService {
-    public final TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
+    private final TeamMapper teamMapper;
 
-    public TeamService(TeamRepository teamRepository) {
+    public TeamService(TeamRepository teamRepository,  TeamMapper teamMapper) {
         this.teamRepository = teamRepository;
+        this.teamMapper = teamMapper;
     }
 
-    public List<String> getTeamNames(String sportType){
-        return teamRepository.findTeamNameBySportType(sportType);
+    public List<TeamDTO> getTeamDTOS(SportType sportType) {
+        return teamRepository.findTeamBySportType(sportType)
+                .stream()
+                .map(teamMapper::toTeamDTO)
+                .toList();
     }
 }
