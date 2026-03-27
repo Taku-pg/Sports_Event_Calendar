@@ -2,23 +2,35 @@ package com.example.sports_event_calendar.Controllers;
 
 import com.example.sports_event_calendar.Models.DTOs.EventDTO;
 import com.example.sports_event_calendar.Models.DTOs.EventDetailDTO;
-import com.example.sports_event_calendar.Models.Entities.Event;
+import com.example.sports_event_calendar.Models.DTOs.NewEventDTO;
+import com.example.sports_event_calendar.Models.DTOs.SportTypeDTO;
+import com.example.sports_event_calendar.Models.Entities.Venue;
 import com.example.sports_event_calendar.Services.EventService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.sports_event_calendar.Services.SportTypeService;
+import com.example.sports_event_calendar.Services.VenueService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class EventController {
 
     private final EventService eventService;
+    private final SportTypeService  sportTypeService;
+    private final VenueService venueService;
 
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService,
+                           SportTypeService sportTypeService,
+                           VenueService venueService) {
         this.eventService = eventService;
+        this.sportTypeService = sportTypeService;
+        this.venueService = venueService;
     }
 
     @GetMapping
@@ -28,10 +40,53 @@ public class EventController {
         return "events";
     }
 
-    @GetMapping("/events")
+    @GetMapping("/event")
     public String eventDetails(Model model, @RequestParam(name = "eventId") Long eventId) {
         EventDetailDTO eventDetailDTO = eventService.findEventDetailById(eventId);
         model.addAttribute("eventDetailDTO", eventDetailDTO);
         return "event_detail";
+    }
+
+    @GetMapping("/add-event")
+    public String addEvent(Model model, @ModelAttribute NewEventDTO newEventDTO) {
+        List<SportTypeDTO> allSportTypes = sportTypeService.getAllSportTypes();
+        List<Venue> allVenues = venueService.getAllVenues();
+
+        model.addAttribute("newEvent", newEventDTO);
+        model.addAttribute("allSportTypes", allSportTypes);
+        model.addAttribute("allVenues", allVenues);
+        model.addAttribute("minDate", LocalDateTime.now().plusDays(1));
+        return "add_event";
+    }
+
+    @PostMapping("/add-event")
+    public String addEvent(@Valid @ModelAttribute(name = "newEvent") NewEventDTO newEventDTO,
+                           BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            List<SportTypeDTO> allSportTypes = sportTypeService.getAllSportTypes();
+            List<Venue> allVenues = venueService.getAllVenues();
+
+            model.addAttribute("allSportTypes", allSportTypes);
+            model.addAttribute("allVenues", allVenues);
+            model.addAttribute("minDate", LocalDateTime.now().plusDays(1));
+
+            return "add_event";
+        }
+
+        try{
+            eventService.addNewEvent(newEventDTO);
+        }catch(NoSuchElementException e){
+            model.addAttribute("errorMessage", "Invalid input value, try again");
+
+            List<SportTypeDTO> allSportTypes = sportTypeService.getAllSportTypes();
+            List<Venue> allVenues = venueService.getAllVenues();
+
+            model.addAttribute("allSportTypes", allSportTypes);
+            model.addAttribute("allVenues", allVenues);
+            model.addAttribute("minDate", LocalDateTime.now().plusDays(1));
+
+            return "add_event";
+        }
+        return "redirect:/";
     }
 }
