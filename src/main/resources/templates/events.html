@@ -19,10 +19,42 @@
                 <td th:text="${event.sportType}"></td>
                 <td th:text="${event.firstTeamName}"></td>
                 <td th:text="${event.secondTeamName}"></td>
-                <td><a th:href="@{/events(eventId = ${event.id})}">Detail</a></td>
+                <td><button type="button" th:onclick="|displayDetail(${event.id})|">Detail</button></td>
             </tr>
         </table>
     </div>
+    <div class="event-detail">
+        <span id="country"></span>
+        <span id="city"></span>
+        <span id="street"></span>
+        <span id="building-number"></span>
+        <span id="venue"></span>
+    </div>
+    <a href="/add-event">add event</a>
 
 </body>
+<script th:inline="javascript">
+    const allEvent = [[${events}]];
+    function displayDetail(id){
+        const event = allEvent.find(e => e.id === id);
+        const detailElement = document.getElementsByClassName('event-detail');
+        if(event){
+            //detailElement.style.display = 'block';
+            const country = document.getElementById('country');
+            const city = document.getElementById('city');
+            const street = document.getElementById('street');
+            const buildingNumber = document.getElementById('building-number');
+            const venue = document.getElementById('venue');
+
+            country.textContent = "country: "+event.address.countryName;
+            city.textContent = "city: "+event.address.cityName;
+            street.textContent = "street: "+event.address.streetName;
+            buildingNumber.textContent = "building number: "+event.address.buildingNumber;
+            venue.textContent = "venue: "+event.address.venueName;
+
+        }else{
+            detailElement.style.display = 'none';
+        }
+    }
+</script>
 </html>
