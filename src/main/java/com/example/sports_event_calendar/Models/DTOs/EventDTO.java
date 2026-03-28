@@ -7,18 +7,7 @@ public class EventDTO {
     private String sportType;
     private String firstTeamName;
     private String secondTeamName;
-
-    public EventDTO(Long id,
-                    String eventName,
-                    String sportType,
-                    String firstTeamName,
-                    String secondTeamName) {
-        this.id = id;
-        this.eventName = eventName;
-        this.sportType = sportType;
-        this.firstTeamName = firstTeamName;
-        this.secondTeamName = secondTeamName;
-    }
+    private AddressDTO address;
 
     public Long getId() {
         return id;
@@ -58,5 +47,13 @@ public class EventDTO {
 
     public void setSecondTeamName(String secondTeamName) {
         this.secondTeamName = secondTeamName;
+    }
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDTO address) {
+        this.address = address;
     }
 }
