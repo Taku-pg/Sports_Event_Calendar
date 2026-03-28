@@ -1,7 +1,6 @@
 package com.example.sports_event_calendar.Controllers;
 
 import com.example.sports_event_calendar.Models.DTOs.EventDTO;
-import com.example.sports_event_calendar.Models.DTOs.EventDetailDTO;
 import com.example.sports_event_calendar.Models.DTOs.NewEventDTO;
 import com.example.sports_event_calendar.Models.DTOs.SportTypeDTO;
 import com.example.sports_event_calendar.Models.Entities.Venue;
@@ -40,12 +39,6 @@ public class EventController {
         return "events";
     }
 
-    @GetMapping("/event")
-    public String eventDetails(Model model, @RequestParam(name = "eventId") Long eventId) {
-        EventDetailDTO eventDetailDTO = eventService.findEventDetailById(eventId);
-        model.addAttribute("eventDetailDTO", eventDetailDTO);
-        return "event_detail";
-    }
 
     @GetMapping("/add-event")
     public String addEvent(Model model, @ModelAttribute NewEventDTO newEventDTO) {
