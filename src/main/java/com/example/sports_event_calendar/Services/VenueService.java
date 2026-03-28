@@ -1,5 +1,6 @@
 package com.example.sports_event_calendar.Services;
 
+import com.example.sports_event_calendar.Models.DTOs.AddressDTO;
 import com.example.sports_event_calendar.Models.Entities.Venue;
 import com.example.sports_event_calendar.Repositories.VenueRepository;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class VenueService {
 
     public Venue findVenueById(long id) {
         return venueRepository.findById(id).orElse(null);
+    }
+
+    public AddressDTO findAddressById(Venue venue) {
+        return venueRepository.getAddress(venue.getId());
     }
 }
