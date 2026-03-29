@@ -18,11 +18,15 @@ public class EventMapper {
 
     public EventDTO mapToDTO(Event event){
         EventDTO eventDTO = new EventDTO();
+
         eventDTO.setId(event.getId());
         eventDTO.setEventName(event.getEventName());
+        eventDTO.setEventDate(event.getEventDate());
+        eventDTO.setDayOfWeek(event.getDayOfWeek());
         eventDTO.setFirstTeamName(event.getFirstTeamName());
         eventDTO.setSecondTeamName(event.getSecondTeamName());
         eventDTO.setSportType(event.getSportType());
+
         AddressDTO address = venueService.findAddressById(event.getVenue());
         eventDTO.setAddress(address);
 
