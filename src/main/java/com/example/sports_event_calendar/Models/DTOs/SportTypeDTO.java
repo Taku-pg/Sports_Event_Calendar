@@ -9,6 +9,11 @@ public class SportTypeDTO {
     private  String sportTypeName;
     private  List<TeamDTO> allTeams;
 
+    public SportTypeDTO(Long id, String sportTypeName) {
+        this.id = id;
+        this.sportTypeName = sportTypeName;
+    }
+
     public Long getId() {
         return id;
     }
