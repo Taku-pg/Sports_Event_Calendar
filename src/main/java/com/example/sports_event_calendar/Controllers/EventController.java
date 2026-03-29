@@ -3,6 +3,7 @@ package com.example.sports_event_calendar.Controllers;
 import com.example.sports_event_calendar.Models.DTOs.EventDTO;
 import com.example.sports_event_calendar.Models.DTOs.NewEventDTO;
 import com.example.sports_event_calendar.Models.DTOs.SportTypeDTO;
+import com.example.sports_event_calendar.Models.DTOs.VenueDTO;
 import com.example.sports_event_calendar.Models.Entities.Venue;
 import com.example.sports_event_calendar.Services.EventService;
 import com.example.sports_event_calendar.Services.SportTypeService;
@@ -43,7 +44,7 @@ public class EventController {
     @GetMapping("/add-event")
     public String addEvent(Model model, @ModelAttribute NewEventDTO newEventDTO) {
         List<SportTypeDTO> allSportTypes = sportTypeService.getAllSportTypes();
-        List<Venue> allVenues = venueService.getAllVenues();
+        List<VenueDTO> allVenues = venueService.getAllVenues();
 
         model.addAttribute("newEvent", newEventDTO);
         model.addAttribute("allSportTypes", allSportTypes);
@@ -57,7 +58,7 @@ public class EventController {
                            BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             List<SportTypeDTO> allSportTypes = sportTypeService.getAllSportTypes();
-            List<Venue> allVenues = venueService.getAllVenues();
+            List<VenueDTO> allVenues = venueService.getAllVenues();
 
             model.addAttribute("allSportTypes", allSportTypes);
             model.addAttribute("allVenues", allVenues);
@@ -72,7 +73,7 @@ public class EventController {
             model.addAttribute("errorMessage", "Invalid input value, try again");
 
             List<SportTypeDTO> allSportTypes = sportTypeService.getAllSportTypes();
-            List<Venue> allVenues = venueService.getAllVenues();
+            List<VenueDTO> allVenues = venueService.getAllVenues();
 
             model.addAttribute("allSportTypes", allSportTypes);
             model.addAttribute("allVenues", allVenues);
