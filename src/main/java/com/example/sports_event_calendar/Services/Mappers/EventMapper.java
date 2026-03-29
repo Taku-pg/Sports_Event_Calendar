@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class EventMapper {
 
-    private VenueService venueService;
+    private final VenueService venueService;
 
     public EventMapper(VenueService venueService) {
         this.venueService = venueService;
