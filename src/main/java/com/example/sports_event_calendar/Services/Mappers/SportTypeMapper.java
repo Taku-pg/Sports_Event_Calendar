@@ -19,12 +19,9 @@ public class SportTypeMapper {
         this.teamService = teamService;
     }
 
-    public SportTypeDTO toSportTypeDTO(SportType sportType) {
-        SportTypeDTO sportTypeDTO = new SportTypeDTO();
-        sportTypeDTO.setId(sportType.getId());
-        sportTypeDTO.setSportTypeName(sportType.getSportType());
+    public SportTypeDTO addAddress(SportTypeDTO sportTypeDTO) {
 
-        List<TeamDTO> teamDTOS = teamService.getTeamDTOS(sportType);
+        List<TeamDTO> teamDTOS = teamService.getTeamDTOS(sportTypeDTO.getSportTypeName());
 
         sportTypeDTO.setAllTeams(teamDTOS);
 
