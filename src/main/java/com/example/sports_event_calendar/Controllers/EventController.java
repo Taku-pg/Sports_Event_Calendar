@@ -77,6 +77,7 @@ public class EventController {
             model.addAttribute("allSportTypes", allSportTypes);
             model.addAttribute("allVenues", allVenues);
             model.addAttribute("minDate", LocalDateTime.now().plusDays(1));
+            model.addAttribute("errorMessage", "Invalid input value, try again");
 
             return "add_event";
         }

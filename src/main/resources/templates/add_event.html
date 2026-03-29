@@ -9,12 +9,11 @@
 <h2>Create new event</h2>
 <form id="add-event-form" th:action="@{/add-event}" method="post" th:object="${newEvent}">
 
+    <span th:if="${errorMessage}" th:text="${errorMessage}" class="error"></span>
 
     <label for="event-name">Event Name:</label>
     <input id="event-name" type="text" required th:field="*{eventName}" />
     <span th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}" class="error"></span>
-
-
 
     <label class="sport-type-select-box" for="sport-type">Sport type:</label>
     <select id="sport-type" required th:field="*{sportTypeId}">
