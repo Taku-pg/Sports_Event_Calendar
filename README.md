@@ -57,6 +57,7 @@
    ```
 
 6. Logout from super user and initialize schema and insert sample data
+
    You can use schema.sql and data.sql in this project folder.
    Password is 'password'.
    ```
