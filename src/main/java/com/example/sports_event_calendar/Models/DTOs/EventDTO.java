@@ -1,9 +1,13 @@
 package com.example.sports_event_calendar.Models.DTOs;
 
 
+import java.time.LocalDateTime;
+
 public class EventDTO {
     private Long id;
     private String eventName;
+    private LocalDateTime eventDate;
+    private String dayOfWeek;
     private String sportType;
     private String firstTeamName;
     private String secondTeamName;
@@ -23,6 +27,22 @@ public class EventDTO {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public LocalDateTime getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDateTime eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public String getDayOfWeek(){
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(String dayOfWeek){
+        this.dayOfWeek = dayOfWeek;
     }
 
     public String getSportType() {
