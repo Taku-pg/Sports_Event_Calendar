@@ -9,7 +9,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
   sql:
     init:
       schema-locations: classpath:data/Sport_event_calendar_schema.sql
