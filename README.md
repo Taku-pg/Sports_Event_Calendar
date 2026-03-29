@@ -1,11 +1,11 @@
 # Sport event calendar
 ## Overview of project
-#### This application provide functionalities of 
+#### This application provides functionalities of 
 - Display list of all events
 - Display detail of each event
 - Create new event
 
-#### There are 2 pages
+#### There are 2 view pages
 
 - root page (http://localhost:8080)
    - View list of events
@@ -57,23 +57,25 @@
    ```
 
 6. Logout from super user and initialize schema and insert sample data
+
    You can use schema.sql and data.sql in this project folder.
+   
    Password is 'password'.
    ```
    psql -U sports_event_calendar -d sports_event_calendar_db -f src/main/resources/data/Sport_event_calendar_schema.sql
    psql -U sports_event_calendar -d sports_event_calendar_db -f src/main/resources/data/Sport_event_calendar_data.sql
    ```
 
-7. Run application
+8. Run application
    
    `gradle bootrun`
 
-8. Access the URL
+9. Access the URL
    
    `http://localhost:8080`
 
 >[!NOTE]
->These commands are based on Windows. Please replace adequate command as your host OS
+>These commands are based on Windows. Please replace adequate commands as your host OS
 
 ## Assumptions and decisions
 - This application works on local postgreSQL database.
