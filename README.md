@@ -8,7 +8,7 @@ This application provide functionalities of
 
 
 ### Entity diagram
-
+<img width="943" height="472" alt="Image" src="https://github.com/user-attachments/assets/a553302c-8d67-4f5a-bf45-5b41b204a4d2" />
 
 ### Tech
 - Java 25
