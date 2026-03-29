@@ -19,9 +19,9 @@ public class SportTypeService {
     }
 
     public List<SportTypeDTO> getAllSportTypes() {
-        return sportTypeRepository.findAll()
+        return sportTypeRepository.findAllDTO()
                 .stream()
-                .map(sportTypeMapper::toSportTypeDTO)
+                .map(sportTypeMapper::addAddress)
                 .toList();
     }
 }
