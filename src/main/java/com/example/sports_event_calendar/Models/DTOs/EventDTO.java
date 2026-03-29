@@ -1,7 +1,6 @@
 package com.example.sports_event_calendar.Models.DTOs;
 
 
-import java.time.LocalDateTime;
 
 public class EventDTO {
     private Long id;
