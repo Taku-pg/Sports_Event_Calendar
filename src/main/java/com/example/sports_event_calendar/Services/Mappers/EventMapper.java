@@ -6,6 +6,8 @@ import com.example.sports_event_calendar.Models.Entities.Event;
 import com.example.sports_event_calendar.Services.VenueService;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class EventMapper {
 
@@ -21,7 +23,11 @@ public class EventMapper {
 
         eventDTO.setId(event.getId());
         eventDTO.setEventName(event.getEventName());
-        eventDTO.setEventDate(event.getEventDate());
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDate = event.getEventDate().format(dtf);
+
+        eventDTO.setEventDate(formattedDate);
         eventDTO.setDayOfWeek(event.getDayOfWeek());
         eventDTO.setFirstTeamName(event.getFirstTeamName());
         eventDTO.setSecondTeamName(event.getSecondTeamName());

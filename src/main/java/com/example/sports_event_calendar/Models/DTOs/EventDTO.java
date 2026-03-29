@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class EventDTO {
     private Long id;
     private String eventName;
-    private LocalDateTime eventDate;
+    private String eventDate;
     private String dayOfWeek;
     private String sportType;
     private String firstTeamName;
@@ -29,11 +29,11 @@ public class EventDTO {
         this.eventName = eventName;
     }
 
-    public LocalDateTime getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(LocalDateTime eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
