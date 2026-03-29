@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Add event page</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/add-event.css}">
 </head>
-<body>
+<body class="new-event">
+<h2>Create new event</h2>
 <form id="add-event-form" th:action="@{/add-event}" method="post" th:object="${newEvent}">
+
 
     <label for="event-name">Event Name:</label>
     <input id="event-name" type="text" required th:field="*{eventName}" />
     <span th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}" class="error"></span>
 
-    <label for="sport-type">Sport type:</label>
+
+
+    <label class="sport-type-select-box" for="sport-type">Sport type:</label>
     <select id="sport-type" required th:field="*{sportTypeId}">
         <option value="">select</option>
         <option th:each="sportType:${allSportTypes}"
@@ -19,6 +24,7 @@
                 th:value="${sportType.id}"></option>
     </select>
     <span id="error-sport-type" th:if="${#fields.hasErrors('sportTypeId')}" th:errors="*{sportTypeId}" class="error"></span>
+
 
     <div id="team-input" style="display: none">
         <label for="first-team">Team 1:</label>
@@ -32,8 +38,9 @@
             <option value="" disabled selected> select </option>
         </select>
         <span id="error-second-team" th:if="${#fields.hasErrors('secondTeamId')}" th:errors="*{secondTeamId}" class="error"></span>
-
     </div>
+
+
     <label for="venue">Venue: </label>
     <select id="venue" required th:field="*{venueId}">
         <option value="">select</option>
@@ -43,7 +50,7 @@
     </select>
     <span id="error-venue" th:if="${#fields.hasErrors('venueId')}" th:errors="*{venueId}" class="error"></span>
 
-
+    <br>
     <label for="event-date">Event date:</label>
     <input type="datetime-local" id="event-date" required
            th:min="${#temporals.format(minDate, 'yyyy-MM-dd hh:mm')}"

@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
+    <meta charset="UTF-8">
     <title>All events</title>
+    <link rel="stylesheet" th:href="@{/stylesheet/events.css}">
 </head>
 <body>
+<nav class="nav-bar">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Account service</a></li>
+        <li><a href="/add-event">Create new event</a></li>
+    </ul>
+</nav>
+<div class="events">
+    <h2>Event list</h2>
+<div class="events-content">
     <div class="eventsList">
-        <table class="eventTable">
+        <table class="event-table">
             <tr>
                 <th>Event Name</th>
                 <th>Sport type</th>
@@ -23,34 +35,54 @@
             </tr>
         </table>
     </div>
-    <div class="event-detail">
+    <div id="event-detail" style="display: none">
+        <h4>Event detail</h4>
+        <span id="event-name"></span>
+        <span id="sport-type"></span>
+        <span id="first-team"></span>
+        <span id="second-team"></span>
+        <span id="date"></span>
+        <span id="day-of-week"></span>
         <span id="country"></span>
         <span id="city"></span>
         <span id="street"></span>
         <span id="building-number"></span>
         <span id="venue"></span>
     </div>
-    <a href="/add-event">add event</a>
-
+</div>
+</div>
 </body>
 <script th:inline="javascript">
     const allEvent = [[${events}]];
     function displayDetail(id){
         const event = allEvent.find(e => e.id === id);
-        const detailElement = document.getElementsByClassName('event-detail');
+        const detailElement = document.getElementById('event-detail');
         if(event){
-            //detailElement.style.display = 'block';
+            detailElement.style.display = 'flex'
+            const eventName = document.getElementById('event-name');
+            const sportType = document.getElementById('sport-type');
+            const firstTeam = document.getElementById('first-team');
+            const secondTeam = document.getElementById('second-team');
+            const date = document.getElementById('date');
+            const dayOfWeek = document.getElementById('day-of-week');
             const country = document.getElementById('country');
             const city = document.getElementById('city');
             const street = document.getElementById('street');
             const buildingNumber = document.getElementById('building-number');
             const venue = document.getElementById('venue');
 
-            country.textContent = "country: "+event.address.countryName;
-            city.textContent = "city: "+event.address.cityName;
-            street.textContent = "street: "+event.address.streetName;
-            buildingNumber.textContent = "building number: "+event.address.buildingNumber;
-            venue.textContent = "venue: "+event.address.venueName;
+
+            eventName.textContent = "Event name: " +event.eventName;
+            sportType.textContent = "Sport type: " +event.sportType;
+            firstTeam.textContent = "Team 1: " +event.firstTeamName;
+            secondTeam.textContent = "Team 2: " +event.secondTeamName;
+            date.textContent = "Date: " +event.eventDate;
+            dayOfWeek.textContent ="Dat of week: " + event.dayOfWeek;
+            country.textContent = "Country: "+event.address.countryName;
+            city.textContent = "City: "+event.address.cityName;
+            street.textContent = "Street: "+event.address.streetName;
+            buildingNumber.textContent = "Building number: "+event.address.buildingNumber;
+            venue.textContent = "Venue: "+event.address.venueName;
 
         }else{
             detailElement.style.display = 'none';
