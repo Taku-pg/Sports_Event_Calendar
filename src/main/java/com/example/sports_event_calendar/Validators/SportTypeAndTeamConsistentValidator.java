@@ -1,6 +1,7 @@
 package com.example.sports_event_calendar.Validators;
 
 import com.example.sports_event_calendar.Models.DTOs.NewEventDTO;
+import com.example.sports_event_calendar.Models.DTOs.TeamDTO;
 import com.example.sports_event_calendar.Models.Entities.SportType;
 import com.example.sports_event_calendar.Models.Entities.Team;
 import com.example.sports_event_calendar.Repositories.SportTypeRepository;
@@ -28,9 +29,9 @@ public class SportTypeAndTeamConsistentValidator implements ConstraintValidator<
 
     @Override
     public boolean isValid(NewEventDTO newEventDTO, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<Team> firstTeam = teamRepository.findTeamById(newEventDTO.getFirstTeamId());
-        Optional<Team> secondTeam = teamRepository.findTeamById(newEventDTO.getSecondTeamId());
-        Optional<SportType> sportType = sportTypeRepository.findById(newEventDTO.getSportTypeId());
+        Optional<TeamDTO> firstTeam = teamRepository.findTeamDTOById(newEventDTO.getFirstTeamId());
+        Optional<TeamDTO> secondTeam = teamRepository.findTeamDTOById(newEventDTO.getSecondTeamId());
+        String sportType = sportTypeRepository.findSportTypeName(newEventDTO.getSportTypeId());
 
         if (firstTeam.isEmpty() || secondTeam.isEmpty() || sportType.isEmpty()) {
             return false;
@@ -40,12 +41,9 @@ public class SportTypeAndTeamConsistentValidator implements ConstraintValidator<
             return false;
         }
 
-        final String firstTeamSportType = firstTeam.get().getSportTypeName();
-        final String secondTeamSportType = secondTeam.get().getSportTypeName();
-        final String sportTypeName = sportType.get().getSportType();
 
-        if(!firstTeamSportType.equals(secondTeamSportType) ||
-                !firstTeamSportType.equals(sportTypeName)) {
+        if(!firstTeam.get().getSportName().equals(secondTeam.get().getSportName()) ||
+                !firstTeam.get().getSportName().equals(sportType)) {
             return false;
         }
         return true;

@@ -22,8 +22,7 @@ public class TeamValidator implements ConstraintValidator<ValidTeam, Long> {
 
     @Override
     public boolean isValid(Long teamId, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<Team> team = teamRepository.findTeamById(teamId);
-        return team.isPresent();
+        return teamRepository.existsById(teamId);
     }
 
 }

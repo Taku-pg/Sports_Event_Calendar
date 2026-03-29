@@ -19,8 +19,7 @@ public class VenueValidator implements ConstraintValidator<ValidVenue, Long> {
 
     @Override
     public boolean isValid(Long venueId, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<Venue> venue = venueRepository.findVenueById(venueId);
-        return venue.isPresent();
+        return venueRepository.existsById(venueId);
     }
 
 

@@ -23,7 +23,6 @@ public class SportTypeValidator implements ConstraintValidator<ValidSportType, L
 
     @Override
     public boolean isValid(Long sportTypeId, ConstraintValidatorContext constraintValidatorContext) {
-        Optional<SportType> sportType = sportTypeRepository.findSportTypeById(sportTypeId);
-        return sportType.isPresent();
+        return sportTypeRepository.existsById(sportTypeId);
     }
 }
