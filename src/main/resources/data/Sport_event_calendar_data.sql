@@ -62,7 +62,7 @@ INSERT INTO venue (venue_name, building_number, _street_id)
     SELECT v.venue_name, v.building_number, s.id
     FROM (
         VALUES
-            ('PGE Narodowy', 1,'Księcia Józefa Poniatowskiego'),
+            ('PGE Narodowy', 1,'Ksiecia Jozefa Poniatowskiego'),
             ('Tokyo dome', 12, 'Chazawa street'),
             ('Olympia Stadium', 32, 'Olympischer Platz'),
             ('National Stadium', 2, 'London street'),
