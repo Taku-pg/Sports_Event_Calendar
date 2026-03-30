@@ -1,11 +1,9 @@
 package com.example.sports_event_calendar.Repositories;
 
-import com.example.sports_event_calendar.Models.DTOs.AddressDTO;
 import com.example.sports_event_calendar.Models.DTOs.VenueDTO;
 import com.example.sports_event_calendar.Models.Entities.Venue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
