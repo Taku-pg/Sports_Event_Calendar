@@ -79,3 +79,4 @@
 
 ## Assumptions and decisions
 - This application works on local postgreSQL database.
+- Date and time of event are local date and time, not considering time zone. 
